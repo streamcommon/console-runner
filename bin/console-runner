@@ -1,0 +1,67 @@
+#!/usr/bin/env php
+<?php
+/**
+ * This file is part of the streamcommon/console-runner package, a StreamCommon open software project.
+ *
+ * @copyright (c) 2019 StreamCommon Team
+ * @see https://github.com/streamcommon/doctrine-manager
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Application;
+
+if (PHP_SAPI !== 'cli' || PHP_OS !== 'Linux') {
+    return false;
+}
+
+$autoloadFiles = [
+    realpath(__DIR__) . '/../vendor/autoload.php',
+    realpath(__DIR__) . '/../../../autoload.php'
+];
+
+foreach ($autoloadFiles as $autoloadFile) {
+    if (file_exists($autoloadFile)) {
+        require $autoloadFile;
+        break;
+    }
+}
+$directories = [
+    getcwd() . '/',
+    realpath(__DIR__) . '/../../../../config/'
+];
+
+$container = null;
+foreach ($directories as $directory) {
+    /** @var ContainerInterface $container */
+    $container = $directory . 'cli-container.php';
+    if (file_exists($container)) {
+        $container = require $container;
+        break;
+    }
+}
+
+if (($container instanceof ContainerInterface) === false) {
+    echo <<<'HELP'
+You are missing a "cli-container.php" or "config/cli-container.php" file in your
+project, which is required to get the Console Runner working. You can use the
+following sample as a template:
+
+<?php
+
+// replace with file to your own project bootstrap
+require_once 'bootstrap.php';
+
+return new \Psr\Container\ContainerInterface();
+
+HELP;
+    exit(1);
+}
+
+/** @var Application $application */
+$application = $container->get(Application::class);
+$application->run();

@@ -1,0 +1,54 @@
+{
+  "name": "streamcommon/console-runner",
+  "description": "PSR-11 Console runner",
+  "license": "BSD-3-Clause",
+  "type": "component",
+  "keywords": [
+    "streamcommon",
+    "console runner",
+    "container console runner",
+    "psr-11"
+  ],
+  "require": {
+    "php": "^7.3",
+    "psr/container": "^1.0",
+    "symfony/console": "^4.3.4"
+  },
+  "require-dev": {
+    "streamcommon/coding-standard": "dev-master",
+    "roave/security-advisories": "dev-master",
+    "malukenho/docheader": "^0.1.7",
+    "phpstan/phpstan": "^0.11.1",
+    "phpunit/phpunit": "^8.0",
+    "php-coveralls/php-coveralls": "^2.1.0",
+    "zendframework/zend-servicemanager": "^3.4.0"
+  },
+  "extra": {
+    "zf" : {
+      "component": "Streamcommon\\Console",
+      "config-provider" : "Streamcommon\\Console\\ConfigProvider"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Streamcommon\\Console\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Streamcommon\\Test\\Console\\": "test/"
+    }
+  },
+  "bin": [
+    "bin/console"
+  ],
+  "scripts": {
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "license-check": "docheader check src/ test/ bin/",
+    "phpstan": "phpstan analyze -l max ./src ./bin",
+    "phpunit": "phpunit --colors=always",
+    "phpunit-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+    "coveralls": "php-coveralls -v"
+  }
+}
