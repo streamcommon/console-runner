@@ -12,6 +12,12 @@ declare(strict_types=1);
 
 namespace Streamcommon\Console;
 
+use Streamcommon\Console\CommandLoader\Factory\CommandLoader as CommandLoaderFactory;
+use Streamcommon\Console\Helper\ContainerHelperSet;
+use Streamcommon\Console\Helper\Factory\HelperSet as HelperSetFactory;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
+
 /**
  * Class ConfigProvider
  *
@@ -27,7 +33,7 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencies(),
+            'dependencies'   => $this->getDependencies(),
             'console-runner' => $this->getConsoleRunner(),
         ];
     }
@@ -40,7 +46,12 @@ class ConfigProvider
     public function getDependencies(): array
     {
         return [
-
+            'factories' => [
+                Application::class            => ApplicationFactory::class,
+                ComponentOptions::class       => ComponentOptionsFactory::class,
+                ContainerCommandLoader::class => CommandLoaderFactory::class,
+                ContainerHelperSet::class     => HelperSetFactory::class
+            ],
         ];
     }
 
@@ -52,8 +63,14 @@ class ConfigProvider
     public function getConsoleRunner(): array
     {
         return [
-            'commands' => [],
-            'helpers' => [],
+            'name'     => 'UNKNOWN',
+            'version'  => 'UNKNOWN',
+            'commands' => [
+                //list commands
+            ],
+            'helpers'  => [
+                // list helpers
+            ],
         ];
     }
 }

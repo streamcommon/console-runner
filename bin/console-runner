@@ -12,13 +12,9 @@
 
 declare(strict_types=1);
 
-use Psr\Container\ContainerInterface;
-use Symfony\Component\Console\Application;
-
 if (PHP_SAPI !== 'cli' || PHP_OS !== 'Linux') {
     return false;
 }
-
 $autoloadFiles = [
     realpath(__DIR__) . '/../vendor/autoload.php',
     realpath(__DIR__) . '/../../../autoload.php'
@@ -30,38 +26,40 @@ foreach ($autoloadFiles as $autoloadFile) {
         break;
     }
 }
-$directories = [
-    getcwd() . '/',
-    realpath(__DIR__) . '/../../../../config/'
-];
+(function() {
+    $directories = [
+        getcwd() . '/',
+        realpath(__DIR__) . '/../../../../config/'
+    ];
 
-$container = null;
-foreach ($directories as $directory) {
-    /** @var ContainerInterface $container */
-    $container = $directory . 'cli-container.php';
-    if (file_exists($container)) {
-        $container = require $container;
-        break;
+    /** @var \Psr\Container\ContainerInterface|null $container */
+    $container = null;
+    foreach ($directories as $directory) {
+        $config = $directory . 'cli-container.php';
+        if (file_exists($config)) {
+            $container = require $config;
+            break;
+        }
     }
-}
 
-if (($container instanceof ContainerInterface) === false) {
-    echo <<<'HELP'
-You are missing a "cli-container.php" or "config/cli-container.php" file in your
-project, which is required to get the Console Runner working. You can use the
-following sample as a template:
+    if (($container instanceof \Psr\Container\ContainerInterface) === false) {
+        echo <<<'HELP'
+        You are missing a "cli-container.php" or "config/cli-container.php" file in your
+        project, which is required to get the Console Runner working. You can use the
+        following sample as a template:
+        
+        <?php
+        
+        // replace with file to your own project bootstrap
+        require_once 'bootstrap.php';
+        
+        return new \Psr\Container\ContainerInterface();
+        
+        HELP;
+        exit(1);
+    }
 
-<?php
-
-// replace with file to your own project bootstrap
-require_once 'bootstrap.php';
-
-return new \Psr\Container\ContainerInterface();
-
-HELP;
-    exit(1);
-}
-
-/** @var Application $application */
-$application = $container->get(Application::class);
-$application->run();
+    /** @var \Symfony\Component\Console\Application $application */
+    $application = $container->get(Symfony\Component\Console\Application::class);
+    $application->run();
+})();

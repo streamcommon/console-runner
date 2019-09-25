@@ -12,8 +12,29 @@ declare(strict_types=1);
 
 namespace Streamcommon\Console;
 
+use Psr\Container\ContainerInterface;
 
+/**
+ * Class ComponentOptionsFactory
+ *
+ * @package Streamcommon\Console
+ */
 class ComponentOptionsFactory
 {
-
+    /**
+     * Create component options
+     *
+     * @param ContainerInterface $container
+     * @param string             $requestedName
+     * @param array|null         $options
+     * @return ComponentOptions
+     */
+    public function __invoke(
+        ContainerInterface $container,
+        string $requestedName,
+        ?array $options = null
+    ): ComponentOptions {
+        $config = $container->get('config');
+        return new ComponentOptions($config['console_runner'] ?? []);
+    }
 }
