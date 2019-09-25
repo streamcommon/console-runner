@@ -15,7 +15,6 @@ namespace Streamcommon\Console\CommandLoader\Factory;
 use Psr\Container\ContainerInterface;
 use Streamcommon\Console\ComponentOptions;
 use Streamcommon\Console\Exception\ContainerException;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
 
 use function get_class;

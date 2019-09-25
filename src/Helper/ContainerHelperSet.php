@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Streamcommon\Console\Helper;
 
 use Psr\Container\ContainerInterface;
-use Streamcommon\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Helper\HelperInterface;
 use Symfony\Component\Console\Helper\HelperSet;
 
