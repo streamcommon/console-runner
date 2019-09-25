@@ -63,14 +63,15 @@ class ConfigProvider
     public function getConsoleRunner(): array
     {
         return [
-            'name'     => 'UNKNOWN',
-            'version'  => 'UNKNOWN',
-            'commands' => [
+            'name'             => 'UNKNOWN',
+            'version'          => 'UNKNOWN',
+            'commands'         => [
                 //list commands
             ],
-            'helpers'  => [
+            'helpers'          => [
                 // list helpers
             ],
+            'catch_exceptions' => true,
         ];
     }
 }

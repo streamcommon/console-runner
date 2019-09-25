@@ -38,7 +38,7 @@ class ApplicationFactory
         /** @var ComponentOptions $componentOptions */
         $componentOptions = $container->get(ComponentOptions::class);
         $application      = new Application($componentOptions->getName(), $componentOptions->getVersion());
-        $application->setCatchExceptions(false);
+        $application->setCatchExceptions($componentOptions->isCatchExceptions());
 
         $commandLoader = $container->get(ContainerCommandLoader::class);
         if (($commandLoader instanceof ContainerCommandLoader) === true) {

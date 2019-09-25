@@ -29,6 +29,8 @@ class ComponentOptions extends AbstractOptions
     protected $commands = [];
     /** @var array */
     protected $helpers = [];
+    /** @var bool */
+    protected $catchExceptions = true;
 
     /**
      * Get name
@@ -115,6 +117,28 @@ class ComponentOptions extends AbstractOptions
     public function setHelpers(array $helpers): ComponentOptions
     {
         $this->helpers = $helpers;
+        return $this;
+    }
+
+    /**
+     * Get catchExceptions
+     *
+     * @return boolean
+     */
+    public function isCatchExceptions(): bool
+    {
+        return $this->catchExceptions;
+    }
+
+    /**
+     * Set catchExceptions
+     *
+     * @param boolean $catchExceptions
+     * @return ComponentOptions
+     */
+    public function setCatchExceptions(bool $catchExceptions): ComponentOptions
+    {
+        $this->catchExceptions = $catchExceptions;
         return $this;
     }
 }
