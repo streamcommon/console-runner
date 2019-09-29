@@ -47,15 +47,7 @@ class HelperSet
         $componentOptions = $container->get(ComponentOptions::class);
         $helperMap        = [];
         foreach ($componentOptions->getHelpers() as $helper) {
-            if (is_string($helper) === false) {
-                throw new ContainerException(
-                    sprintf(
-                        'Expected string, got %s',
-                        is_object($helper) ? get_class($helper) : gettype($helper)
-                    )
-                );
-            }
-            $helperMap[$helper] = $helper;
+            $helperMap[$helper->getName()] = $helper->getClass();
         }
         return new ContainerHelperSet($container, $helperMap);
     }

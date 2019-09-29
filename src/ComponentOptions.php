@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Streamcommon\Console;
 
+use Streamcommon\Excess\Configuration\ClassName\NamedValue;
 use Zend\Stdlib\AbstractOptions;
 
 /**
@@ -25,9 +26,9 @@ class ComponentOptions extends AbstractOptions
     protected $name = 'UNKNOWN';
     /** @var string */
     protected $version = 'UNKNOWN';
-    /** @var array */
+    /** @var NamedValue[] */
     protected $commands = [];
-    /** @var array */
+    /** @var NamedValue[] */
     protected $helpers = [];
     /** @var bool */
     protected $catchExceptions = true;
@@ -79,7 +80,7 @@ class ComponentOptions extends AbstractOptions
     /**
      * Get commands
      *
-     * @return array
+     * @return NamedValue[]
      */
     public function getCommands(): array
     {
@@ -94,14 +95,16 @@ class ComponentOptions extends AbstractOptions
      */
     public function setCommands(array $commands): ComponentOptions
     {
-        $this->commands = $commands;
+        $this->commands = array_map(function ($item) {
+            return (($item instanceof NamedValue) == true) ? $item : new NamedValue($item);
+        }, $commands);
         return $this;
     }
 
     /**
      * Get helpers
      *
-     * @return array
+     * @return NamedValue[]
      */
     public function getHelpers(): array
     {
@@ -116,7 +119,9 @@ class ComponentOptions extends AbstractOptions
      */
     public function setHelpers(array $helpers): ComponentOptions
     {
-        $this->helpers = $helpers;
+        $this->helpers = array_map(function ($item) {
+            return (($item instanceof NamedValue) == true) ? $item : new NamedValue($item);
+        }, $helpers);
         return $this;
     }
 

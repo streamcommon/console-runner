@@ -47,15 +47,7 @@ class CommandLoader
         $componentOptions = $container->get(ComponentOptions::class);
         $commandMap       = [];
         foreach ($componentOptions->getCommands() as $command) {
-            if (is_string($command) === false) {
-                throw new ContainerException(
-                    sprintf(
-                        'Expected string, got %s',
-                        is_object($command) ? get_class($command) : gettype($command)
-                    )
-                );
-            }
-            $commandMap[$command] = $command;
+            $commandMap[$command->getName()] = $command->getClass();
         }
         return new ContainerCommandLoader($container, $commandMap);
     }

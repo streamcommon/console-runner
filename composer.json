@@ -9,10 +9,14 @@
     "container console runner",
     "psr-11"
   ],
+  "config": {
+    "optimize-autoloader": true
+  },
   "require": {
     "php": "^7.3",
     "psr/container": "^1.0",
     "symfony/console": "^4.3.4",
+    "streamcommon/excess-configuration": "^1.0.8",
     "zendframework/zend-stdlib": "^3.2.1"
   },
   "require-dev": {

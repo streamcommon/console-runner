@@ -66,10 +66,10 @@ class ConfigProvider
             'name'             => 'UNKNOWN',
             'version'          => 'UNKNOWN',
             'commands'         => [
-                //list commands
+                //named list commands ['name' => 'name', 'class' => 'classname']
             ],
             'helpers'          => [
-                // list helpers
+                // named list helpers ['name' => 'name', 'class' => 'classname']
             ],
             'catch_exceptions' => true,
         ];
