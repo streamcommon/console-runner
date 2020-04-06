@@ -15,21 +15,25 @@
   "require": {
     "php": "^7.3",
     "psr/container": "^1.0",
-    "symfony/console": "^4.3.4",
-    "streamcommon/excess-configuration": "^1.0.8",
-    "zendframework/zend-stdlib": "^3.2.1"
+    "symfony/console": "^5.0.7",
+    "streamcommon/excess-configuration": "^1.1.0",
+    "laminas/laminas-stdlib": "^3.2.1"
   },
   "require-dev": {
     "streamcommon/coding-standard": "dev-master",
     "roave/security-advisories": "dev-master",
     "malukenho/docheader": "^0.1.7",
-    "phpstan/phpstan": "^0.11.1",
-    "phpunit/phpunit": "^8.0",
+    "phpstan/phpstan": "^0.12.18",
+    "phpunit/phpunit": "^9.1.1",
     "php-coveralls/php-coveralls": "^2.1.0",
-    "zendframework/zend-servicemanager": "^3.4.0"
+    "laminas/laminas-servicemanager": "^3.4.0"
   },
   "extra": {
-    "zf" : {
+    "zf": {
+      "component": "Streamcommon\\Console",
+      "config-provider" : "Streamcommon\\Console\\ConfigProvider"
+    },
+    "laminas": {
       "component": "Streamcommon\\Console",
       "config-provider" : "Streamcommon\\Console\\ConfigProvider"
     }

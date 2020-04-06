@@ -35,7 +35,7 @@ class CommandLoader
      *
      * @param ContainerInterface $container
      * @param string             $requestedName
-     * @param array|null         $options
+     * @param array<mixed>|null  $options
      * @return ContainerCommandLoader
      */
     public function __invoke(

@@ -35,7 +35,7 @@ class HelperSet
      *
      * @param ContainerInterface $container
      * @param string             $requestedName
-     * @param array|null         $options
+     * @param array<mixed>|null  $options
      * @return ContainerHelperSet
      */
     public function __invoke(

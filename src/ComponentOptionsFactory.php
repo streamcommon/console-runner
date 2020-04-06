@@ -26,7 +26,7 @@ class ComponentOptionsFactory
      *
      * @param ContainerInterface $container
      * @param string             $requestedName
-     * @param array|null         $options
+     * @param array<mixed>|null  $options
      * @return ComponentOptions
      */
     public function __invoke(

@@ -30,7 +30,7 @@ class ApplicationFactory
      *
      * @param ContainerInterface $container
      * @param string             $requestedName
-     * @param array|null         $options
+     * @param array<mixed>|null  $options
      * @return Application
      */
     public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): Application

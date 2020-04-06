@@ -25,14 +25,14 @@ class ContainerHelperSet extends HelperSet
 {
     /** @var ContainerInterface */
     protected $container;
-    /** @var array */
+    /** @var array<mixed> */
     protected $helperMap = [];
 
     /**
      * ContainerHelperSet constructor.
      *
      * @param ContainerInterface $container
-     * @param array              $helperMap
+     * @param array<mixed>       $helperMap
      */
     public function __construct(ContainerInterface $container, array $helperMap)
     {
@@ -47,7 +47,7 @@ class ContainerHelperSet extends HelperSet
      * @param string $name
      * @return boolean
      */
-    public function has($name): bool
+    public function has(string $name): bool
     {
         $has = parent::has($name);
         if ($has === false) {
@@ -62,7 +62,7 @@ class ContainerHelperSet extends HelperSet
      * @param string $name
      * @return HelperInterface
      */
-    public function get($name): HelperInterface
+    public function get(string $name): HelperInterface
     {
         return parent::get($name) ?? $this->container->get($this->helperMap[$name]);
     }

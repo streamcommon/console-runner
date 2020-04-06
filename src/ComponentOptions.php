@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Streamcommon\Console;
 
 use Streamcommon\Excess\Configuration\ClassName\NamedValue;
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 
 /**
  * Class ComponentOptions
@@ -90,7 +90,7 @@ class ComponentOptions extends AbstractOptions
     /**
      * Set commands
      *
-     * @param array $commands
+     * @param array<mixed> $commands
      * @return ComponentOptions
      */
     public function setCommands(array $commands): ComponentOptions
@@ -114,7 +114,7 @@ class ComponentOptions extends AbstractOptions
     /**
      * Set helpers
      *
-     * @param array $helpers
+     * @param array<mixed> $helpers
      * @return ComponentOptions
      */
     public function setHelpers(array $helpers): ComponentOptions

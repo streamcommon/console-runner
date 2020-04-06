@@ -28,7 +28,7 @@ class ConfigProvider
     /**
      * Returns the configuration array
      *
-     * @return array
+     * @return array<mixed>
      */
     public function __invoke(): array
     {
@@ -41,7 +41,7 @@ class ConfigProvider
     /**
      * Return dependencies configuration
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getDependencies(): array
     {
@@ -58,7 +58,7 @@ class ConfigProvider
     /**
      * Return console runner configuration
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getConsoleRunner(): array
     {
