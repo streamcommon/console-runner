@@ -34,7 +34,7 @@ class ConfigProvider
     {
         return [
             'dependencies'   => $this->getDependencies(),
-            'console-runner' => $this->getConsoleRunner(),
+            'console_runner' => $this->getConsoleRunner(),
         ];
     }
 
@@ -50,7 +50,7 @@ class ConfigProvider
                 Application::class            => ApplicationFactory::class,
                 ComponentOptions::class       => ComponentOptionsFactory::class,
                 ContainerCommandLoader::class => CommandLoaderFactory::class,
-                ContainerHelperSet::class     => HelperSetFactory::class
+                ContainerHelperSet::class     => HelperSetFactory::class,
             ],
         ];
     }

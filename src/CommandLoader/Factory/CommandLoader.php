@@ -14,14 +14,7 @@ namespace Streamcommon\Console\CommandLoader\Factory;
 
 use Psr\Container\ContainerInterface;
 use Streamcommon\Console\ComponentOptions;
-use Streamcommon\Console\Exception\ContainerException;
 use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
-
-use function get_class;
-use function is_string;
-use function sprintf;
-use function gettype;
-use function is_object;
 
 /**
  * Class CommandLoader

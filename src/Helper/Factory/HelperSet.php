@@ -14,14 +14,7 @@ namespace Streamcommon\Console\Helper\Factory;
 
 use Psr\Container\ContainerInterface;
 use Streamcommon\Console\ComponentOptions;
-use Streamcommon\Console\Exception\ContainerException;
 use Streamcommon\Console\Helper\ContainerHelperSet;
-
-use function is_string;
-use function sprintf;
-use function is_object;
-use function get_class;
-use function gettype;
 
 /**
  * Class HelperSet
